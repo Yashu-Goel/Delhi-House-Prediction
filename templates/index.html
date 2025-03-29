@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delhi House Price Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Delhi House Price Predictor</h1>
+        <form action="https://delhi-house-prediction-random-forest-1.onrender.com" method="post">
+            <label>Bathroom:</label>
+            <select name="Bathroom">
+                {% for val in dropdowns['Bathroom'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Parking:</label>
+            <select name="Parking">
+                {% for val in dropdowns['Parking'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Type:</label>
+            <select name="Type">
+                {% for val in dropdowns['Type'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Furnishing:</label>
+            <select name="Furnishing">
+                {% for val in dropdowns['Furnishing'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Status:</label>
+            <select name="Status">
+                {% for val in dropdowns['Status'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Transaction:</label>
+            <select name="Transaction">
+                {% for val in dropdowns['Transaction'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="BHK">BHK</label>
+            <select name="BHK" id="BHK" required>
+              {% for i in range(1, 8) %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+            <label for="PerSqft">Price per Sqft (PerSqft)</label>
+<input type="number" name="PerSqft" id="PerSqft" step="0.01" required>
+
+            <label>Locality:</label>
+            <select name="Locality">
+                {% for val in dropdowns['Locality'] %}
+                <option value="{{ val }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Total Area (sq ft):</label>
+            <input type="number" step="any" name="TotalArea" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Predicted Price: ₹{{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
